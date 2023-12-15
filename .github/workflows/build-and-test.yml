@@ -17,6 +17,8 @@ jobs:
       - uses: ./.github/actions/setup-pnpm
         with:
           version: 8
+      - name: Install dependencies
+        run: pnpm i --frozen-lockfile
       - name: Run ESLint and TSC
         run: pnpm lint
 
@@ -29,5 +31,7 @@ jobs:
       - uses: ./.github/actions/setup-pnpm
         with:
           version: 8
+      - name: Install dependencies
+        run: pnpm i --frozen-lockfile
       - name: Run tests
         run: pnpm test
