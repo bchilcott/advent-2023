@@ -5,8 +5,12 @@ import { readFile } from "node:fs/promises";
 const TEST_INPUT_1_PATH = "day1/inputs/test_input_1.txt";
 const TEST_INPUT_1_SOLUTION = 142;
 
+const TEST_INPUT_2_PATH = "day1/inputs/test_input_2.txt";
+const TEST_INPUT_2_SOLUTION = 281;
+
 const MAIN_INPUT_PATH = "day1/inputs/input.txt";
-const MAIN_INPUT_SOLUTION = 55130;
+const MAIN_INPUT_SOLUTION_1 = 55130;
+const MAIN_INPUT_SOLUTION_2 = -1; // TODO - Set this
 
 describe("get value from line with no words", () => {
   it("adds the first and last digit when there are two digits", () => {
@@ -29,7 +33,6 @@ describe("get value from line with no words", () => {
     expect(getValueFromLine("mfonekasd2k4ksdfnine")).toEqual(24);
   });
 });
-
 describe("calculate full document", () => {
   it("fails if an empty input is provided", () => {
     expect(() => calculateFinalCalibration("")).toThrow();
@@ -39,11 +42,21 @@ describe("calculate full document", () => {
     const document = (await readFile(TEST_INPUT_1_PATH)).toString();
     expect(calculateFinalCalibration(document)).toEqual(TEST_INPUT_1_SOLUTION);
   });
+
+  it("calculates the final figure based on the part 2 example", async () => {
+    const document = (await readFile(TEST_INPUT_2_PATH)).toString();
+    expect(calculateFinalCalibration(document)).toEqual(TEST_INPUT_2_SOLUTION);
+  });
 });
 
 describe("complete the challenge", () => {
   it("completes part 1", async () => {
     const document = (await readFile(MAIN_INPUT_PATH)).toString();
-    expect(calculateFinalCalibration(document)).toEqual(MAIN_INPUT_SOLUTION);
+    expect(calculateFinalCalibration(document)).toEqual(MAIN_INPUT_SOLUTION_1);
+  });
+
+  it("completes part 2", async () => {
+    const document = (await readFile(MAIN_INPUT_PATH)).toString();
+    expect(calculateFinalCalibration(document)).toEqual(MAIN_INPUT_SOLUTION_2);
   });
 });
