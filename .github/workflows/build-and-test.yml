@@ -20,12 +20,14 @@ jobs:
       - name: Run ESLint and TSC
         run: pnpm lint
 
-  # test:
-  #   runs-on: ubuntu-latest
+  test:
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #     - uses: ./.github/actions/setup-pnpm
-  #       with:
-  #         version: 8
-  #     - name: Run tests
-  #       run: pnpm test
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - uses: ./.github/actions/setup-pnpm
+        with:
+          version: 8
+      - name: Run tests
+        run: pnpm test
